@@ -15,7 +15,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Animasi Modal */
         .modal-enter { animation: modalIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes modalIn {
             from { opacity: 0; transform: scale(0.8) translateY(20px); }
@@ -30,20 +29,15 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center sm:p-4 p-0">
 
-    <!-- MODAL LOGOUT (PESAN PERPISAHAN) -->
+    <!-- MODAL LOGOUT -->
     <div id="modalLogout" class="hidden fixed inset-0 bg-black/60 z-[120] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-transparent -z-10"></div>
-            
             <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 text-3xl shadow-sm border border-red-100">
                 <i class="fas fa-heart"></i>
             </div>
-            
             <h3 class="text-lg font-bold text-gray-800 mb-2">Sampai Jumpa, Nak!</h3>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-                Terima kasih sudah berkunjung hari ini. Ingatlah bahwa kamu tidak sendirian. Jaga dirimu baik-baik ya, kami selalu ada untukmu.
-            </p>
-            
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Terima kasih sudah berkunjung. Jaga dirimu baik-baik ya, kami selalu ada untukmu.</p>
             <div class="flex gap-3">
                 <button onclick="closeLogoutModal()" class="flex-1 py-3 rounded-xl border border-gray-200 text-gray-600 font-bold text-sm hover:bg-gray-50">Batal</button>
                 <button onclick="performLogout()" class="flex-1 bg-red-500 text-white font-bold py-3 rounded-xl hover:bg-red-600 shadow-lg shadow-red-200 text-sm">Keluar Sekarang</button>
@@ -51,7 +45,7 @@
         </div>
     </div>
 
-    <!-- MODAL SELAMAT DATANG (WELCOME & PRIVACY) -->
+    <!-- MODAL SELAMAT DATANG -->
     <div id="modalWelcome" class="hidden fixed inset-0 bg-black/60 z-[110] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden border-4 border-white">
             <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-transparent -z-10"></div>
@@ -70,7 +64,7 @@
         </div>
     </div>
 
-    <!-- MODAL SUKSES TERIMA KASIH (SAAT KIRIM LAPORAN) -->
+    <!-- MODAL SUKSES -->
     <div id="modalSuccess" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-purple-500"></div>
@@ -99,7 +93,6 @@
         <!-- CONTENT AREA -->
         <main class="flex-1 p-6 overflow-y-auto no-scrollbar relative bg-slate-50">
             
-            <!-- NOTIFICATION TOAST -->
             <div id="toast" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-xl z-50 text-xs flex items-center gap-2 whitespace-nowrap">
                 <i class="fas fa-info-circle"></i> <span id="toastMsg">Notifikasi</span>
             </div>
@@ -137,11 +130,18 @@
 
             <!-- DASHBOARD SISWA -->
             <div id="view-dashboard-siswa" class="hidden space-y-4 pb-16">
-                <!-- User Card -->
+                <!-- User Card (UPDATED) -->
                 <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-blue-100">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg"><i class="fas fa-user-graduate"></i></div>
-                        <div><p class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Siswa Aktif</p><h3 id="displayNama" class="font-bold text-gray-800 text-sm line-clamp-1">Nama Siswa</h3></div>
+                        <!-- Icon Gender Dinamis -->
+                        <div id="userIconContainer" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <!-- Sapaan Waktu Dinamis -->
+                            <p id="greetingText" class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Selamat Datang,</p>
+                            <h3 id="displayNama" class="font-bold text-gray-800 text-sm line-clamp-1">Nama Siswa</h3>
+                        </div>
                     </div>
                     <button onclick="confirmLogout()" class="text-red-400 p-2 hover:bg-red-50 rounded-full transition"><i class="fas fa-sign-out-alt"></i></button>
                 </div>
@@ -155,9 +155,8 @@
                     <button onclick="setTab('History')" id="tabHistory" class="flex-1 min-w-[60px] py-2.5 text-[10px] font-bold rounded-lg text-gray-400 flex flex-col items-center"><i class="fas fa-history mb-1 text-sm"></i>Riwayat</button>
                 </div>
 
-                <!-- CONTENT: BERANDA (NEW) -->
+                <!-- CONTENT: BERANDA -->
                 <div id="content-beranda" class="space-y-4 animate-fade-in">
-                    <!-- Banner Info -->
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
                         <div class="absolute right-0 top-0 w-24 h-24 bg-white opacity-10 rounded-full -mr-4 -mt-4"></div>
                         <h3 class="font-bold text-lg mb-1">Monitoring Aktivitas</h3>
@@ -165,33 +164,12 @@
                         <button onclick="setTab('History')" class="bg-white text-blue-600 text-xs font-bold px-4 py-2 rounded-lg shadow-sm">Cek Riwayat Lengkap <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
 
-                    <!-- Guru BK List -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-                        <h4 class="font-bold text-gray-800 text-sm mb-3 border-b pb-2 flex items-center gap-2">
-                            <i class="fas fa-chalkboard-teacher text-blue-500"></i> Tim Guru BK Kami
-                        </h4>
+                        <h4 class="font-bold text-gray-800 text-sm mb-3 border-b pb-2 flex items-center gap-2"><i class="fas fa-chalkboard-teacher text-blue-500"></i> Tim Guru BK Kami</h4>
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition">
-                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-user-tie"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-800">Muhammad Hasratul, S.Pd.,Gr.,M.M</p>
-                                    <p class="text-[10px] text-gray-500">Konselor Sekolah</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition">
-                                <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600"><i class="fas fa-user"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-800">Jumliana, S.Pd.,Gr</p>
-                                    <p class="text-[10px] text-gray-500">Konselor Sekolah</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i class="fas fa-user"></i></div>
-                                <div>
-                                    <p class="text-xs font-bold text-gray-800">Hamriana, S.Pd.,Gr</p>
-                                    <p class="text-[10px] text-gray-500">Konselor Sekolah</p>
-                                </div>
-                            </div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-user-tie"></i></div><div><p class="text-xs font-bold text-gray-800">Muhammad Hasratul, S.Pd.,Gr.,M.M</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold text-gray-800">Jumliana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold text-gray-800">Hamriana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
                         </div>
                     </div>
                 </div>
@@ -210,16 +188,21 @@
                     <button onclick="submitLaporan()" id="btnSubmit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-200 transition transform active:scale-95">KIRIM SEKARANG <i class="fas fa-paper-plane ml-1"></i></button>
                 </div>
 
-                <!-- CONTENT: CHAT KONSULTASI -->
+                <!-- CONTENT: CHAT KONSULTASI (UPDATED BUTTON LAYOUT) -->
                 <div id="content-chat" class="hidden flex flex-col h-[450px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="bg-blue-50 p-3 border-b border-blue-100 flex items-center gap-2 justify-between">
                         <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div><div><span class="text-xs font-bold text-blue-800 block">Live Chat Guru BK</span><span class="text-[9px] text-blue-600">Online</span></div></div>
                         <i class="fas fa-headset text-blue-300 text-xl"></i>
                     </div>
-                    <div id="chatBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50/50"><p class="text-center text-xs text-gray-400 italic bg-gray-100 py-1 px-3 rounded-full mx-auto w-fit mt-4">Privasi chat terjamin.</p></div>
-                    <div class="p-3 bg-white border-t flex gap-2 items-center">
-                        <input type="text" id="chatInput" class="flex-1 bg-gray-100 border-0 p-3 rounded-full text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Tulis pesan...">
-                        <button onclick="sendChat()" id="btnSendChat" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition"><i class="fas fa-paper-plane text-sm"></i></button>
+                    <div id="chatBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50/50">
+                        <p class="text-center text-xs text-gray-400 italic bg-gray-100 py-1 px-3 rounded-full mx-auto w-fit mt-4">Privasi chat terjamin.</p>
+                    </div>
+                    <!-- INPUT CHAT BARU (Tombol di Tengah) -->
+                    <div class="p-4 bg-white border-t flex flex-col gap-3 items-center">
+                        <input type="text" id="chatInput" class="w-full bg-gray-100 border-0 p-3 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Tulis pesan untuk Guru BK...">
+                        <button onclick="sendChat()" id="btnSendChat" class="w-full bg-blue-600 text-white py-2.5 rounded-full shadow-md hover:bg-blue-700 transition text-sm font-bold flex items-center justify-center gap-2 transform active:scale-95">
+                            <i class="fas fa-paper-plane"></i> Kirim Konsultasi
+                        </button>
                     </div>
                 </div>
 
@@ -229,6 +212,7 @@
 
             <!-- DASHBOARD GURU -->
             <div id="view-dashboard-guru" class="hidden space-y-4 pb-16">
+                <!-- (Same as before) -->
                 <div class="flex justify-between items-center mb-4 bg-white p-4 rounded-xl shadow-sm">
                     <div><h2 class="font-bold text-gray-800 text-sm"><i class="fas fa-chalkboard-teacher text-blue-600 mr-2"></i> Ruang BK</h2><p class="text-[10px] text-gray-500">Panel Admin Guru</p></div>
                     <button onclick="handleLogout()" class="text-red-500 text-xs font-bold border border-red-200 px-3 py-1 rounded-full">Keluar</button>
@@ -325,8 +309,28 @@
                 const res = await fetch(API_URL, { method: 'POST', body: body }); const data = await res.json();
                 if (data.status === 'success') {
                     currentUser = data;
-                    if (data.role === 'GuruBK') { switchView('view-dashboard-guru'); loadGuruData(); loadGuruChatList(); } 
-                    else { document.getElementById('displayNama').innerText = data.nama; document.getElementById('modalWelcome').classList.remove('hidden'); }
+                    if (data.role === 'GuruBK') { 
+                        switchView('view-dashboard-guru'); loadGuruData(); loadGuruChatList(); 
+                    } else { 
+                        document.getElementById('displayNama').innerText = data.nama; 
+                        
+                        // UPDATE GREETING (Pagi/Siang/Sore/Malam)
+                        const hour = new Date().getHours();
+                        let greet = hour < 11 ? "Selamat Pagi," : hour < 15 ? "Selamat Siang," : hour < 18 ? "Selamat Sore," : "Selamat Malam,";
+                        document.getElementById('greetingText').innerText = greet;
+
+                        // UPDATE ICON GENDER
+                        const iconCont = document.getElementById('userIconContainer');
+                        if (data.gender === 'L') {
+                            iconCont.innerHTML = '<i class="fas fa-male text-2xl"></i>';
+                            iconCont.className = "w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600";
+                        } else {
+                            iconCont.innerHTML = '<i class="fas fa-female text-2xl"></i>';
+                            iconCont.className = "w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500";
+                        }
+
+                        document.getElementById('modalWelcome').classList.remove('hidden'); 
+                    }
                 } else { showToast(data.message || "Login Gagal. Cek Username/Password."); }
             } catch (err) { showToast("Gagal koneksi server."); }
             btn.innerHTML = originalText; btn.disabled = false;
@@ -336,7 +340,7 @@
         function confirmLogout() { document.getElementById('modalLogout').classList.remove('hidden'); }
         function closeLogoutModal() { document.getElementById('modalLogout').classList.add('hidden'); }
         function performLogout() { currentUser = null; clearInterval(chatInterval); closeLogoutModal(); switchView('view-login'); }
-        function handleLogout() { performLogout(); } // For Guru direct logout
+        function handleLogout() { performLogout(); }
 
         async function sendChat() {
             const input = document.getElementById('chatInput'); const msg = input.value; if(!msg) return;
