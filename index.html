@@ -84,13 +84,12 @@
                     <button onclick="nav('beranda')" class="nav-btn nav-active px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Beranda</button>
                     <button onclick="nav('halaman-berita')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Berita</button>
                     <button onclick="nav('profil')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Profil</button>
-                    
-                    <button onclick="nav('ekstrakurikuler')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Ekstrakurikuler</button>
-                    
                     <button onclick="nav('guru')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Guru dan Tendik</button>
-                    <button onclick="nav('alumni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Alumni</button>
+                    <button onclick="nav('ekstrakurikuler')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Ekstrakurikuler</button>
                     <button onclick="nav('fasilitas')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Fasilitas</button>
                     <button onclick="nav('galeri')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Galeri</button>
+                    <button onclick="nav('alumni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Alumni</button>
+                    <button onclick="nav('layanan')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Layanan Digital</button>
                     <button onclick="nav('testimoni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Testimoni</button>
                 </div>
             </div>
@@ -271,6 +270,11 @@
             </div>
         </section>
 
+        <section id="guru" class="page-content">
+            <div class="text-center mb-10"><h3 class="text-3xl font-extrabold text-slate-900">Guru dan Tenaga Kependidikan</h3><p class="text-slate-500">Pendidik profesional yang berdedikasi.</p></div>
+            <div id="grid-guru" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+        </section>
+
         <section id="ekstrakurikuler" class="page-content">
             <div class="text-center mb-12">
                 <h3 class="text-3xl font-extrabold text-slate-900">Ekstrakurikuler</h3>
@@ -279,26 +283,44 @@
             <div id="grid-ekskul" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
 
-        <section id="guru" class="page-content">
-            <div class="text-center mb-10"><h3 class="text-3xl font-extrabold text-slate-900">Guru dan Tenaga Kependidikan</h3><p class="text-slate-500">Pendidik profesional yang berdedikasi.</p></div>
-            <div id="grid-guru" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
-        </section>
-        <section id="alumni" class="page-content">
-            <div class="text-center mb-10"><h3 class="text-3xl font-extrabold text-slate-900">Jejak Alumni</h3><p class="text-slate-500">Inspirasi dari para lulusan terbaik.</p></div>
-            <div id="grid-alumni" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
-        </section>
         <section id="fasilitas" class="page-content">
             <h3 class="text-3xl font-extrabold text-slate-900 mb-8 border-l-4 border-blue-600 pl-4">Fasilitas Sekolah</h3>
             <div id="grid-fasilitas" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
         </section>
-        <section id="prestasi" class="page-content">
-            <h3 class="text-3xl font-extrabold text-slate-900 mb-8 border-l-4 border-amber-500 pl-4">Prestasi Siswa</h3>
-            <div id="grid-prestasi" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
-        </section>
+
         <section id="galeri" class="page-content">
             <h3 class="text-3xl font-extrabold text-slate-900 mb-8 border-l-4 border-pink-500 pl-4">Galeri Kegiatan</h3>
             <div id="grid-galeri" class="columns-2 md:columns-4 gap-4 space-y-4"></div>
         </section>
+
+        <section id="alumni" class="page-content">
+            <div class="text-center mb-10"><h3 class="text-3xl font-extrabold text-slate-900">Jejak Alumni</h3><p class="text-slate-500">Inspirasi dari para lulusan terbaik.</p></div>
+            <div id="grid-alumni" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+        
+        <section id="layanan" class="page-content">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-extrabold text-slate-900">Layanan Digital</h3>
+                <p class="text-slate-500 mt-2">Akses aplikasi sekolah dan pusat unduhan dokumen resmi.</p>
+            </div>
+
+            <div class="mb-12">
+                <h4 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <i class="ph-fill ph-app-window text-blue-600"></i> Aplikasi Terintegrasi
+                </h4>
+                <div id="grid-layanan-apps" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <i class="ph-fill ph-files text-amber-500"></i> Dokumen & Unduhan
+                </h4>
+                <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
+                    <div id="list-layanan-docs" class="divide-y divide-slate-100"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="testimoni" class="page-content">
             <div class="text-center mb-12">
                 <h3 class="text-3xl font-extrabold text-slate-900">Suara Mereka</h3>
@@ -306,6 +328,11 @@
                 <button onclick="openForm()" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-bold shadow-xl shadow-blue-900/20 hover:scale-105 transition flex items-center gap-2 mx-auto"><i class="ph-bold ph-pencil-simple"></i> Tulis Ulasan</button>
             </div>
             <div id="grid-testimoni" class="columns-1 md:columns-3 gap-8 space-y-8"></div>
+        </section>
+        
+        <section id="prestasi" class="page-content">
+            <h3 class="text-3xl font-extrabold text-slate-900 mb-8 border-l-4 border-amber-500 pl-4">Prestasi Siswa</h3>
+            <div id="grid-prestasi" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
 
     </main>
@@ -425,7 +452,7 @@
             catch (err) { alert("Gagal mengirim ulasan."); } finally { btn.innerText = originalText; btn.disabled = false; }
         }
 
-        // --- POPUP PPDB LOGIC (Baru) ---
+        // --- POPUP PPDB LOGIC ---
         function openPPDB() {
             const ov = document.getElementById('ppdb-overlay');
             const ct = document.getElementById('ppdb-content');
@@ -497,7 +524,7 @@
                 render(globalDB.alumni, 'grid-alumni', (i, idx) => `<div onclick="openModal('alumni', ${idx})" class="glass-card bg-white p-8 rounded-[2.5rem] flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden cursor-pointer"><div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-blue-50 to-transparent"></div><img src="${getImg(i.Foto_URL)}" class="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow-lg relative z-10 group-hover:scale-105 transition"><h4 class="font-extrabold text-lg text-slate-900 relative z-10">${i.Nama}</h4><span class="inline-block bg-blue-900 text-white text-[10px] font-bold px-3 py-1 rounded-full mb-3 mt-1 relative z-10">Angkatan ${i.Angkatan}</span><p class="text-sm font-bold text-amber-600 mb-4 relative z-10 line-clamp-1">${i.Profesi_Kampus}</p></div>`);
                 render(globalDB.testimoni, 'grid-testimoni', (i) => `<div class="break-inside-avoid glass-card bg-white p-6 rounded-[2rem] relative mb-6"><i class="ph-fill ph-chat-centered-text text-blue-100 text-4xl absolute top-6 right-6"></i><p class="text-slate-600 text-sm leading-relaxed mb-6 relative z-10 font-medium">"${i.Isi_Testimoni}"</p><div class="flex items-center gap-3 pt-4 border-t border-slate-50"><img src="${i.Foto_URL}" class="w-10 h-10 rounded-full shadow-sm bg-slate-100"><div><h4 class="font-bold text-slate-900 text-sm">${i.Nama}</h4><p class="text-xs text-blue-500 font-bold uppercase tracking-wider">${i.Status}</p></div></div></div>`);
                 
-                // RENDER EKSTRAKURIKULER (Baru)
+                // RENDER EKSTRAKURIKULER
                 render(globalDB.ekstrakurikuler, 'grid-ekskul', (i) => `
                     <div class="glass-card bg-white p-6 rounded-[2rem] flex items-center gap-4 hover:border-blue-300 transition group">
                         <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 overflow-hidden">
@@ -513,9 +540,42 @@
                     </div>
                 `);
 
+                // RENDER LAYANAN DIGITAL (Baru)
+                if (globalDB.layanan && globalDB.layanan.length > 0) {
+                    const apps = globalDB.layanan.filter(item => item.Kategori === 'Aplikasi');
+                    const docs = globalDB.layanan.filter(item => item.Kategori === 'Dokumen');
+                    render(apps, 'grid-layanan-apps', (i) => `
+                        <a href="${i.Link_URL}" target="_blank" class="glass-card bg-white p-6 rounded-3xl flex flex-col items-center text-center hover:scale-105 hover:shadow-xl transition duration-300 border border-transparent hover:border-blue-200 group">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-blue-50 flex items-center justify-center text-3xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                                <img src="${i.Icon_URL}" onerror="this.style.display='none'" class="w-10 h-10 object-contain">
+                                <i class="ph-fill ph-link" style="${i.Icon_URL ? 'display:none' : ''}"></i>
+                            </div>
+                            <h5 class="font-bold text-slate-900 text-sm mb-1">${i.Nama}</h5>
+                            <p class="text-[10px] text-slate-500 leading-tight">${i.Deskripsi}</p>
+                        </a>
+                    `);
+                    render(docs, 'list-layanan-docs', (i) => `
+                        <div class="p-4 md:p-6 flex items-center justify-between hover:bg-slate-50 transition group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xl shrink-0">
+                                    <i class="ph-fill ph-file-pdf"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition">${i.Nama}</h5>
+                                    <p class="text-[10px] text-slate-500">${i.Deskripsi}</p>
+                                </div>
+                            </div>
+                            <a href="${i.Link_URL}" target="_blank" class="bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                                <span class="hidden md:inline">Download</span> <i class="ph-bold ph-download-simple"></i>
+                            </a>
+                        </div>
+                    `);
+                } else {
+                    document.getElementById('grid-layanan-apps').innerHTML = `<p class="col-span-full text-center text-slate-400 text-sm italic">Belum ada aplikasi.</p>`;
+                    document.getElementById('list-layanan-docs').innerHTML = `<p class="p-6 text-center text-slate-400 text-sm italic">Belum ada dokumen.</p>`;
+                }
+
                 if(globalDB.profil && globalDB.profil.length > 0) { const p = globalDB.profil[0]; document.getElementById('container-kepsek').innerHTML = `<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100 relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div><img src="${getImg(p.Foto_Kepsek)}" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-[6px] border-blue-50 shadow-inner relative z-10"><div class="text-center md:text-left relative z-10"><span class="text-amber-500 font-bold tracking-widest text-xs uppercase mb-2 block">Kepala Sekolah</span><h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">${p.Nama_Kepsek}</h3><div class="text-slate-600 text-lg leading-loose text-justify whitespace-pre-line relative z-10">"${p.Sambutan}"</div></div></div>`; document.getElementById('teks-visi').innerText = p.Visi||'-'; document.getElementById('teks-misi').innerText = p.Misi||'-'; }
-                
-                // PPDB Logic ditangani oleh openPPDB(), tidak dirender otomatis di halaman utama lagi
                 
                 render(globalDB.fasilitas, 'grid-fasilitas', (i) => `<div class="group relative rounded-[2.5rem] overflow-hidden h-64 shadow-lg"><img src="${getImg(i.Gambar_URL)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000"><div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent p-6 flex flex-col justify-end"><h3 class="text-white font-bold text-xl translate-y-2 group-hover:translate-y-0 transition duration-300">${i.Nama}</h3><p class="text-blue-100 text-xs mt-1 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">${i.Deskripsi}</p></div></div>`);
                 render(globalDB.prestasi, 'grid-prestasi', (i) => `<div class="glass-card bg-white rounded-3xl p-4 flex items-center gap-4 shadow-sm"><img src="${getImg(i.Foto_URL)}" class="w-16 h-16 rounded-2xl object-cover bg-slate-100 shrink-0"><div><span class="bg-amber-100 text-amber-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Juara ${i.Juara}</span><h4 class="font-bold text-slate-900 mt-1 text-sm line-clamp-2">${i.Nama_Kegiatan}</h4><p class="text-[10px] text-slate-500 mt-1 font-semibold">${i.Nama_Siswa}</p></div></div>`);
