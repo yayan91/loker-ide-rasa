@@ -84,7 +84,9 @@
                     <button onclick="nav('beranda')" class="nav-btn nav-active px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Beranda</button>
                     <button onclick="nav('halaman-berita')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Berita</button>
                     <button onclick="nav('profil')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Profil</button>
-                    <button onclick="nav('ppdb')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">PPDB</button>
+                    
+                    <button onclick="nav('ekstrakurikuler')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Ekstrakurikuler</button>
+                    
                     <button onclick="nav('guru')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Guru dan Tendik</button>
                     <button onclick="nav('alumni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Alumni</button>
                     <button onclick="nav('fasilitas')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Fasilitas</button>
@@ -148,6 +150,15 @@
         </div>
     </div>
 
+    <div id="ppdb-overlay" class="fixed inset-0 bg-slate-900/80 z-[90] hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div id="ppdb-content" class="bg-white rounded-[2.5rem] max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl transform scale-95 transition-all duration-300">
+            <button onclick="closePPDB()" class="absolute top-4 right-4 z-50 bg-white/50 hover:bg-red-100 text-slate-600 hover:text-red-600 w-10 h-10 rounded-full flex items-center justify-center transition backdrop-blur-md"><i class="ph-bold ph-x text-lg"></i></button>
+            <div id="konten-ppdb-popup" class="p-0">
+                <div class="p-10 text-center"><div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div></div>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 z-[80] hidden opacity-0 flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeModal()">
         <div id="modal-content" class="glass-card bg-white rounded-[2rem] max-w-3xl w-full max-h-[90vh] overflow-y-auto transform scale-95 relative transition-all duration-300" onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="fixed top-4 right-4 bg-slate-100 hover:bg-red-100 text-slate-500 hover:text-red-600 w-10 h-10 rounded-full flex items-center justify-center transition z-50 shadow-sm"><i class="ph-bold ph-x text-xl"></i></button>
@@ -203,7 +214,7 @@
                         Pusat informasi dan layanan digital UPT SPF SMP Negeri 16 Makassar. Religius Cerdas Berkarakter Peduli Lingkungan.
                     </p>
                     <div class="flex flex-col md:flex-row justify-center gap-5">
-                        <button onclick="nav('ppdb')" class="bg-amber-500 text-blue-950 px-10 py-4 rounded-2xl font-bold hover:scale-105 hover:bg-amber-400 transition shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2">
+                        <button onclick="openPPDB()" class="bg-amber-500 text-blue-950 px-10 py-4 rounded-2xl font-bold hover:scale-105 hover:bg-amber-400 transition shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2">
                             <i class="ph-bold ph-student"></i> Info PPDB
                         </button>
                         <button onclick="scrollToNews()" class="bg-white/10 border border-white/20 text-white px-10 py-4 rounded-2xl font-bold hover:bg-white/20 transition backdrop-blur-sm flex items-center justify-center gap-2">
@@ -260,7 +271,14 @@
             </div>
         </section>
 
-        <section id="ppdb" class="page-content"><div id="konten-ppdb"></div></section>
+        <section id="ekstrakurikuler" class="page-content">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-extrabold text-slate-900">Ekstrakurikuler</h3>
+                <p class="text-slate-500 mt-2">Wadah pengembangan bakat dan minat siswa SMPN 16 Makassar.</p>
+            </div>
+            <div id="grid-ekskul" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
         <section id="guru" class="page-content">
             <div class="text-center mb-10"><h3 class="text-3xl font-extrabold text-slate-900">Guru dan Tenaga Kependidikan</h3><p class="text-slate-500">Pendidik profesional yang berdedikasi.</p></div>
             <div id="grid-guru" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
@@ -292,6 +310,11 @@
 
     </main>
 
+    <button onclick="openPPDB()" class="fixed bottom-6 right-6 z-[70] bg-gradient-to-r from-amber-500 to-orange-500 text-white w-16 h-16 rounded-full shadow-2xl shadow-orange-500/40 flex items-center justify-center animate-bounce hover:scale-110 transition cursor-pointer border-4 border-white/30 backdrop-blur-md" title="Info PPDB">
+        <i class="ph-bold ph-student text-3xl"></i>
+        <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">Daftar!</span>
+    </button>
+
     <footer class="bg-[#0F172A] text-slate-400 pt-24 pb-10 mt-24 rounded-t-[4rem] border-t-4 border-amber-500">
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 border-b border-slate-800 pb-12 mb-8">
@@ -319,7 +342,7 @@
                     <h5 class="text-white font-bold text-lg mb-6">Akses Cepat</h5>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-center gap-3 group cursor-pointer hover:text-white transition" onclick="nav('profil')"><i class="ph-bold ph-caret-right text-amber-500"></i> Profil Sekolah</li>
-                        <li class="flex items-center gap-3 group cursor-pointer hover:text-white transition" onclick="nav('ppdb')"><i class="ph-bold ph-caret-right text-amber-500"></i> Informasi PPDB</li>
+                        <li class="flex items-center gap-3 group cursor-pointer hover:text-white transition" onclick="openPPDB()"><i class="ph-bold ph-caret-right text-amber-500"></i> Informasi PPDB</li>
                         <li class="flex items-center gap-3 group cursor-pointer hover:text-white transition" onclick="nav('guru')"><i class="ph-bold ph-caret-right text-amber-500"></i> Direktori Guru</li>
                     </ul>
                 </div>
@@ -402,6 +425,52 @@
             catch (err) { alert("Gagal mengirim ulasan."); } finally { btn.innerText = originalText; btn.disabled = false; }
         }
 
+        // --- POPUP PPDB LOGIC (Baru) ---
+        function openPPDB() {
+            const ov = document.getElementById('ppdb-overlay');
+            const ct = document.getElementById('ppdb-content');
+            
+            if(globalDB.ppdb && globalDB.ppdb.length > 0 && document.getElementById('konten-ppdb-popup').children.length <= 1) {
+                const info = globalDB.ppdb[0];
+                const html = `
+                    <div class="flex flex-col md:flex-row">
+                        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
+                            <img src="${getImg(info.Gambar_Brosur)}" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent flex items-end p-8 md:hidden">
+                                <h2 class="text-white font-bold text-2xl">${info.Judul}</h2>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 p-8 md:p-12 bg-white">
+                            <h2 class="hidden md:block text-3xl font-extrabold text-blue-900 mb-4 leading-tight">${info.Judul}</h2>
+                            <p class="text-slate-600 mb-6 leading-relaxed text-sm">${info.Deskripsi}</p>
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
+                                    <i class="ph-fill ph-calendar-check text-blue-600 text-xl"></i>
+                                    <div><p class="text-[10px] font-bold text-blue-400 uppercase">Mulai</p><p class="font-bold text-blue-900">${info.Jadwal_Mulai}</p></div>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 bg-red-50 rounded-xl">
+                                    <i class="ph-fill ph-calendar-x text-red-500 text-xl"></i>
+                                    <div><p class="text-[10px] font-bold text-red-400 uppercase">Selesai</p><p class="font-bold text-red-900">${info.Jadwal_Selesai}</p></div>
+                                </div>
+                            </div>
+                            <a href="${info.Link_Daftar}" target="_blank" class="block w-full text-center bg-amber-500 text-blue-900 font-bold py-4 rounded-xl hover:bg-amber-400 transition shadow-lg shadow-amber-500/30">
+                                Daftar Sekarang
+                            </a>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('konten-ppdb-popup').innerHTML = html;
+            }
+            ov.classList.remove('hidden');
+            setTimeout(() => { ov.classList.remove('opacity-0'); ct.classList.remove('scale-95'); }, 10);
+        }
+        function closePPDB() {
+            const ov = document.getElementById('ppdb-overlay');
+            const ct = document.getElementById('ppdb-content');
+            ov.classList.add('opacity-0'); ct.classList.add('scale-95');
+            setTimeout(() => ov.classList.add('hidden'), 300);
+        }
+
         // --- CORE DATA LOADING ---
         function getImg(url) { if (!url) return 'https://via.placeholder.com/500x300?text=No+Image'; if (url.includes('drive.google.com')) { let id=''; const p=url.split('/'); if(url.includes('/d/')) id=p[p.indexOf('d')+1]; else if(url.includes('id=')) id=url.split('id=')[1].split('&')[0]; if(id) return `https://lh3.googleusercontent.com/d/${id}=s800`; } return url; }
 
@@ -428,8 +497,26 @@
                 render(globalDB.alumni, 'grid-alumni', (i, idx) => `<div onclick="openModal('alumni', ${idx})" class="glass-card bg-white p-8 rounded-[2.5rem] flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden cursor-pointer"><div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-blue-50 to-transparent"></div><img src="${getImg(i.Foto_URL)}" class="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow-lg relative z-10 group-hover:scale-105 transition"><h4 class="font-extrabold text-lg text-slate-900 relative z-10">${i.Nama}</h4><span class="inline-block bg-blue-900 text-white text-[10px] font-bold px-3 py-1 rounded-full mb-3 mt-1 relative z-10">Angkatan ${i.Angkatan}</span><p class="text-sm font-bold text-amber-600 mb-4 relative z-10 line-clamp-1">${i.Profesi_Kampus}</p></div>`);
                 render(globalDB.testimoni, 'grid-testimoni', (i) => `<div class="break-inside-avoid glass-card bg-white p-6 rounded-[2rem] relative mb-6"><i class="ph-fill ph-chat-centered-text text-blue-100 text-4xl absolute top-6 right-6"></i><p class="text-slate-600 text-sm leading-relaxed mb-6 relative z-10 font-medium">"${i.Isi_Testimoni}"</p><div class="flex items-center gap-3 pt-4 border-t border-slate-50"><img src="${i.Foto_URL}" class="w-10 h-10 rounded-full shadow-sm bg-slate-100"><div><h4 class="font-bold text-slate-900 text-sm">${i.Nama}</h4><p class="text-xs text-blue-500 font-bold uppercase tracking-wider">${i.Status}</p></div></div></div>`);
                 
+                // RENDER EKSTRAKURIKULER (Baru)
+                render(globalDB.ekstrakurikuler, 'grid-ekskul', (i) => `
+                    <div class="glass-card bg-white p-6 rounded-[2rem] flex items-center gap-4 hover:border-blue-300 transition group">
+                        <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 overflow-hidden">
+                            <img src="${getImg(i.Foto_URL)}" onerror="this.src='https://ui-avatars.com/api/?name=${i.Nama_Ekskul}&background=random'" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition">${i.Nama_Ekskul}</h4>
+                            <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+                                <i class="ph-bold ph-clock text-amber-500"></i> ${i.Hari_Latihan}
+                            </div>
+                            <p class="text-xs text-blue-400 mt-1 font-bold uppercase tracking-wide">Pembina: ${i.Pembina}</p>
+                        </div>
+                    </div>
+                `);
+
                 if(globalDB.profil && globalDB.profil.length > 0) { const p = globalDB.profil[0]; document.getElementById('container-kepsek').innerHTML = `<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100 relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div><img src="${getImg(p.Foto_Kepsek)}" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-[6px] border-blue-50 shadow-inner relative z-10"><div class="text-center md:text-left relative z-10"><span class="text-amber-500 font-bold tracking-widest text-xs uppercase mb-2 block">Kepala Sekolah</span><h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">${p.Nama_Kepsek}</h3><div class="text-slate-600 text-lg leading-loose text-justify whitespace-pre-line relative z-10">"${p.Sambutan}"</div></div></div>`; document.getElementById('teks-visi').innerText = p.Visi||'-'; document.getElementById('teks-misi').innerText = p.Misi||'-'; }
-                if(globalDB.ppdb && globalDB.ppdb.length > 0) { const info = globalDB.ppdb[0]; document.getElementById('konten-ppdb').innerHTML = `<div class="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border border-blue-50 flex flex-col md:flex-row gap-12 items-center relative overflow-hidden"><div class="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-500 to-amber-500"></div><div class="flex-1 space-y-6"><div><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest">Pendaftaran Dibuka</span><h2 class="text-4xl font-extrabold text-blue-900 mt-4 leading-tight">${info.Judul}</h2></div><p class="text-slate-600 text-lg leading-relaxed border-l-4 border-amber-400 pl-6">${info.Deskripsi}</p><div class="flex gap-4 flex-wrap"><div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100"><i class="ph-bold ph-calendar-check text-blue-600 text-xl"></i><div><p class="font-bold text-blue-900 text-xs uppercase">Mulai</p><p class="text-xs text-slate-500">${info.Jadwal_Mulai}</p></div></div><div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100"><i class="ph-bold ph-calendar-x text-red-500 text-xl"></i><div><p class="font-bold text-blue-900 text-xs uppercase">Selesai</p><p class="text-xs text-slate-500">${info.Jadwal_Selesai}</p></div></div></div><a href="${info.Link_Daftar}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-amber-500 text-blue-950 text-lg font-bold px-10 py-4 rounded-2xl hover:scale-105 transition w-full md:w-auto">Daftar Sekarang <i class="ph-bold ph-arrow-right"></i></a></div><div class="flex-1 w-full max-w-md"><img src="${getImg(info.Gambar_Brosur)}" class="w-full rounded-3xl shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition duration-500"></div></div>`; }
+                
+                // PPDB Logic ditangani oleh openPPDB(), tidak dirender otomatis di halaman utama lagi
+                
                 render(globalDB.fasilitas, 'grid-fasilitas', (i) => `<div class="group relative rounded-[2.5rem] overflow-hidden h-64 shadow-lg"><img src="${getImg(i.Gambar_URL)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000"><div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent p-6 flex flex-col justify-end"><h3 class="text-white font-bold text-xl translate-y-2 group-hover:translate-y-0 transition duration-300">${i.Nama}</h3><p class="text-blue-100 text-xs mt-1 opacity-0 group-hover:opacity-100 transition duration-500 translate-y-4 group-hover:translate-y-0">${i.Deskripsi}</p></div></div>`);
                 render(globalDB.prestasi, 'grid-prestasi', (i) => `<div class="glass-card bg-white rounded-3xl p-4 flex items-center gap-4 shadow-sm"><img src="${getImg(i.Foto_URL)}" class="w-16 h-16 rounded-2xl object-cover bg-slate-100 shrink-0"><div><span class="bg-amber-100 text-amber-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Juara ${i.Juara}</span><h4 class="font-bold text-slate-900 mt-1 text-sm line-clamp-2">${i.Nama_Kegiatan}</h4><p class="text-[10px] text-slate-500 mt-1 font-semibold">${i.Nama_Siswa}</p></div></div>`);
                 render(globalDB.galeri, 'grid-galeri', (i) => `<div class="break-inside-avoid mb-4 rounded-2xl overflow-hidden relative group cursor-pointer"><img src="${getImg(i.Foto_URL)}" class="w-full object-cover hover:scale-105 transition duration-500"><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center p-4 text-center"><p class="text-white text-xs font-bold">${i.Keterangan}</p></div></div>`);
@@ -439,8 +526,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
